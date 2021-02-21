@@ -1,6 +1,3 @@
-import eventlet
-eventlet.monkey_patch()
-
 from flask import Flask, jsonify
 from video_feed import VideoCamera
 import socketio
@@ -55,8 +52,6 @@ def emit_feed():
         bytes_frame = frame.tobytes()
         sio.emit('byte_feed', {'bytes': bytes_frame})
         sio.sleep(0)
-    global thread
-    thread.join()
     print('Background task ended')
 
 
